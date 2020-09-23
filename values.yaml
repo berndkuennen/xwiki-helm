@@ -20,6 +20,10 @@ resources:
   requests:
     cpu: 500m
     memory: 3000Mi
+# Persistence is enabled by default, means the chart tries to create a PVC 
+# for xwiki pod on installation; set an appropriate storageClass & size here
+storage: 10Gi
+storageClass: place_your_storage_class_here
 ##
 ## MySql chart configuration
 ##
@@ -33,6 +37,10 @@ mysql:
   mysqlPassword: xwiki
   mysqlDatabase: xwiki
   imageTag: 5.7
+  # Persistence.enabled is "true" by default, means the chart tries to create a PVC 
+  # for mysql pod on installation; set an appropriate storageClass here
+  persistence:
+    storageClass: place_your_storage_class_here
   configurationFiles:
     mysql.cnf: |-
       [client]
